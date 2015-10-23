@@ -1,0 +1,13 @@
+---
+- hosts: all
+  sudo: yes
+
+  tasks:
+    - name: install linux image
+      apt: name=linux-image-generic-lts-trusty state=present update_cache=yes    
+    
+    - name: install docker
+      shell: wget -qO- https://get.docker.com/ | sh      
+
+    - name: add vagrant to docker group
+      user: name=vagrant groups=docker append=yes
